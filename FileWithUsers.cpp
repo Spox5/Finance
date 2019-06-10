@@ -42,6 +42,8 @@ User FileWithUsers::getUserData(string userData)
 vector <User> FileWithUsers::loadFileWithUsers()
 {
     CMarkup xml;
+    User user;
+    vector <User> users;
 
     bool fileExists = xml.Load(XMLFile::getFileName());
 
@@ -52,17 +54,35 @@ vector <User> FileWithUsers::loadFileWithUsers()
 
     xml.FindElem("Users");
     xml.IntoElem();
-    while (xml.FindElem("Income"))
+    while (xml.FindElem("User"))
     {
         xml.IntoElem();
-        xml.FindElem("Date");
-        if (xml.GetData() == "2019-05-05")
+        xml.FindElem("UserId");
+        user.setUserId(atoi(xml.GetElemContent().c_str()));
+        xml.FindElem("UserLogin");
+        user.setUserLogin(xml.GetElemContent());
+        xml.FindElem("UserPassword");
+        user.setUserPassword(xml.GetElemContent());
+        xml.FindElem("UserName");
+        user.setUserName(xml.GetElemContent());
+        xml.FindElem("UserSurname");
+        user.setUserSurname(xml.GetElemContent());
+        users.push_back(user);
+
+
+
+
+        /*if (xml.GetData() == "2")
         {
-            xml.FindElem("Amount");
+            xml.FindElem("UserName");
             string amount = xml.GetElemContent();
             cout << amount << endl;
         }
-        xml.OutOfElem();
+        xml.OutOfElem();*/
+    }
+    for (int i = 0; i <= users.size(); i++)
+    {
+        cout << users[i].getUserPassword() << endl;
     }
     /*User user;
     vector <User> users;
@@ -132,7 +152,7 @@ void FileWithUsers::saveNewUserToFile(User user)
     fileUsers.close();*/
 }
 
-void FileWithUsers::saveNewPasswordToFile(vector <User> user)
+/*void FileWithUsers::saveNewPasswordToFile(vector <User> user)
 {
     fstream fileUsers;
     fileUsers.open(XMLFile::getFileName().c_str(), ios::out);

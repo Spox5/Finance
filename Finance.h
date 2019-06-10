@@ -28,6 +28,7 @@ public:
         adresatMaster = NULL;
     }*/
     void registerTheUser();
+
     /*void logowanieUzytkownika();
     void zmianaHaslaUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
