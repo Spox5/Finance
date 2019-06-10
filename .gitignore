@@ -1,0 +1,11 @@
+bin/
+obj/
+plan/
+02-ks-obiekt.*
+*.cbp
+users.xml
+incomes.xml
+expenses.xml
+*.depend
+*.layout
+*.cscope_file_list
