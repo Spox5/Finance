@@ -6,8 +6,9 @@ using namespace std;
 
 int main()
 {
-    Finance finance("Uzytkownicy.xml");
-    finance.changeUserPassword();
+    Finance finance("Uzytkownicy.xml", "Przychody.xml");
+    finance.logInTheUser();
+    finance.addIncome();
 
 
 

@@ -1,6 +1,6 @@
 #include "FileWithUsers.h"
 
-User FileWithUsers::getUserData(string userData)
+/*User FileWithUsers::getUserData(string userData)
 {
     User user;
     string simplyUserData = "";
@@ -37,7 +37,7 @@ User FileWithUsers::getUserData(string userData)
         }
     }
     return user;
-}
+}*/
 
 vector <User> FileWithUsers::loadFileWithUsers()
 {
@@ -70,10 +70,6 @@ vector <User> FileWithUsers::loadFileWithUsers()
         xml.OutOfElem();
         users.push_back(user);
 
-    }
-    for (int i = 0; i < users.size(); i++)
-    {
-        cout << users[i].getUserPassword() << endl;
     }
 
     return users;
