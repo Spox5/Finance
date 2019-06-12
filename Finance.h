@@ -3,42 +3,43 @@
 
 #include <iostream>
 #include "UserMaster.h"
-//#include "AdresatMaster.h"
+#include "IncomeMaster.h"
 
 using namespace std;
 
 class Finance
 {
     UserMaster userMaster;
-    //AdresatMaster *adresatMaster;
-    //const string NAZWA_PLIKU_Z_ADRESATAMI;
+    IncomeMaster *incomeMaster;
+    const string FILE_NAME_WITH_INCOMES;
 
 
 public:
     Finance(string fileWithUsersName)
     : userMaster(fileWithUsersName){};
-    /*KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
-    : uzytkownikMaster(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+    Finance(string fileNameWithUsers, string fileNameWithIncomes)
+    : userMaster(fileNameWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes)
     {
-        adresatMaster = NULL;
+        incomeMaster = NULL;
     };
-    ~KsiazkaAdresowa()
+    ~Finance()
     {
-        delete adresatMaster;
-        adresatMaster = NULL;
-    }*/
+        delete incomeMaster;
+        incomeMaster = NULL;
+    }
     void registerTheUser();
     void logInTheUser();
     void changeUserPassword();
     int getLoggedUserId();
+    void logOutUser();
+    void addIncome();
     /*
-    void dodajAdresata();
     void listaAdresatow();
     void wyszukajAdresataPoImieniu();
     void wyszukajAdresataPoNazwisku();
     void usuniecieAdresata ();
     void edycjaAdresata ();
-    void wylogowanieUzytkownika();*/
+    ;*/
 
 };
 

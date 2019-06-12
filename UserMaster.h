@@ -22,7 +22,7 @@ public:
     void registerTheUser();
     int logInTheUser();
     vector <User> changeUserPassword();
-    int logoutUser();
+    int logOutUser();
     bool checkIfUserIsLogIn();
     int getLoggedUserId();
 };

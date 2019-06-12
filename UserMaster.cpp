@@ -1,5 +1,5 @@
 #include "UserMaster.h"
-//#include "AdresatMaster.h"
+#include "IncomeMaster.h"
 
 void UserMaster::registerTheUser ()
 {
@@ -110,7 +110,7 @@ int UserMaster::getLoggedUserId()
     return loggedUserId;
 }
 
-int UserMaster::logoutUser()
+int UserMaster::logOutUser()
 {
     return loggedUserId = 0;
 }

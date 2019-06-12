@@ -10,10 +10,10 @@ void Finance::registerTheUser()
 void Finance::logInTheUser()
 {
     userMaster.logInTheUser();
-    //if (userMaster.checkIfUserIsSignIn())
-    //{
-    //    adresatMaster = new AdresatMaster(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMaster.pobierzIdZalogowanegoUzytkownika());
-    //}
+    if (userMaster.checkIfUserIsLogIn())
+    {
+        incomeMaster = new IncomeMaster(FILE_NAME_WITH_INCOMES, userMaster.getLoggedUserId());
+    }
 }
 
 void Finance::changeUserPassword()
@@ -26,19 +26,19 @@ int Finance::getLoggedUserId()
     userMaster.getLoggedUserId();
 }
 
-/*
-
-void KsiazkaAdresowa::wylogowanieUzytkownika()
+void Finance::addIncome()
 {
-    uzytkownikMaster.wylogowanieUzytkownika();
+    incomeMaster->addIncome();
+}
+
+/*void Finance::logOutUser()
+{
+    userMaster.logOutUser();
     delete adresatMaster;
     adresatMaster = NULL;
 }
 
-void KsiazkaAdresowa::dodajAdresata()
-{
-    adresatMaster->dodajAdresata();
-}
+
 
 void KsiazkaAdresowa::listaAdresatow()
 {
