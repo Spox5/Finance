@@ -13,16 +13,17 @@ class UserMaster
 
 
 public:
-    UserMaster(string fileWithUsersName) : fileWithUsers(fileWithUsersName) {
+    UserMaster(string fileWithUsersName) : fileWithUsers(fileWithUsersName)
+    {
         loggedUserId = 0;
-    users = fileWithUsers.loadFileWithUsers();
+        users = fileWithUsers.loadFileWithUsers();
     };
 
     void registerTheUser();
-    int signInTheUser();
+    int logInTheUser();
     vector <User> changeUserPassword();
     int logoutUser();
-    bool checkIfUserIsSignIn();
+    bool checkIfUserIsLogIn();
     int getLoggedUserId();
 };
 

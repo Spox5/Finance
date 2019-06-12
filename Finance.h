@@ -28,11 +28,10 @@ public:
         adresatMaster = NULL;
     }*/
     void registerTheUser();
-
-    /*void logowanieUzytkownika();
-    void zmianaHaslaUzytkownika();
-    int pobierzIdZalogowanegoUzytkownika();
-
+    void logInTheUser();
+    void changeUserPassword();
+    int getLoggedUserId();
+    /*
     void dodajAdresata();
     void listaAdresatow();
     void wyszukajAdresataPoImieniu();

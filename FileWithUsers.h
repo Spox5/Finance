@@ -19,7 +19,7 @@ public:
     User getUserData(string userData);
 
     void saveNewUserToFile(User user);
-    void saveNewPasswordToFile(vector <User> users);
+    void saveNewPasswordToFile(string newPassword, int loggedUserId);
 
 };
 

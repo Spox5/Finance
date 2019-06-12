@@ -7,24 +7,26 @@ void Finance::registerTheUser()
     userMaster.registerTheUser();
 }
 
-/*void KsiazkaAdresowa::logowanieUzytkownika()
+void Finance::logInTheUser()
 {
-    uzytkownikMaster.logowanieUzytkownika();
-    if (uzytkownikMaster.czyUzytkownikJestZalogowany())
-    {
-        adresatMaster = new AdresatMaster(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMaster.pobierzIdZalogowanegoUzytkownika());
-    }
+    userMaster.logInTheUser();
+    //if (userMaster.checkIfUserIsSignIn())
+    //{
+    //    adresatMaster = new AdresatMaster(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMaster.pobierzIdZalogowanegoUzytkownika());
+    //}
 }
 
-int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
+void Finance::changeUserPassword()
 {
-    uzytkownikMaster.pobierzIdZalogowanegoUzytkownika();
+    userMaster.changeUserPassword();
 }
 
-void KsiazkaAdresowa::zmianaHaslaUzytkownika()
+int Finance::getLoggedUserId()
 {
-    uzytkownikMaster.zmianaHaslaUzytkownika();
+    userMaster.getLoggedUserId();
 }
+
+/*
 
 void KsiazkaAdresowa::wylogowanieUzytkownika()
 {

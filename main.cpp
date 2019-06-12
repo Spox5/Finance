@@ -7,9 +7,9 @@ using namespace std;
 int main()
 {
     Finance finance("Uzytkownicy.xml");
-    //finance.registerTheUser();
-    FileWithUsers file("Uzytkownicy.xml");
-    file.loadFileWithUsers();
+    finance.changeUserPassword();
+
+
 
     return 0;
 }

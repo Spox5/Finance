@@ -49,29 +49,29 @@ void UserMaster::registerTheUser ()
 
 }
 
-/*int UzytkownikMaster::logowanieUzytkownika ()
+int UserMaster::logInTheUser()
 {
-    string nazwaUzytkownika, hasloUzytkownika;
+    string userLogin, userPassword;
 
-    cout << "Podaj nazwe uzytkownika: " << endl;
-    cin >> nazwaUzytkownika;
+    cout << "Podaj login uzytkownika: " << endl;
+    cin >> userLogin;
 
     int i = 0;
-    while (i < uzytkownicy.size())
+    while (i < users.size())
     {
-        if (nazwaUzytkownika == uzytkownicy[i].wypiszNazweUzytkownika())
+        if (userLogin == users[i].getUserLogin())
         {
-            for (int proby = 0; proby < 3; proby++)
+            for (int signInAttempt = 0; signInAttempt < 3; signInAttempt++)
             {
-                cout << "Podaj haslo. Pozostalo prob: " << 3 -  proby << endl;
-                cin >> hasloUzytkownika;
-                if (hasloUzytkownika == uzytkownicy[i].wypiszHasloUzytkownika())
+                cout << "Podaj haslo. Pozostalo prob: " << 3 -  signInAttempt << endl;
+                cin >> userPassword;
+                if (userPassword == users[i].getUserPassword())
                 {
                     cout << "Zalogowales sie." << endl;
                     system("pause");
                     system("cls");
-                    idZalogowanegoUzytkownika = uzytkownicy[i].wypiszIdUzytkownika();
-                    return uzytkownicy[i].wypiszIdUzytkownika();
+                    loggedUserId = users[i].getUserId();
+                    return users[i].getUserId();
                 }
                 else
                     cout << "Nieprawidlowe haslo." << endl;;
@@ -85,40 +85,40 @@ void UserMaster::registerTheUser ()
     cout << "Nie ma uzytkownika o takiej nazwie." << endl;
     system ("pause");
     return 0;
+
 }
 
-vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika()
+vector <User> UserMaster::changeUserPassword()
 {
-    string noweHaslo;
+    string newPassword;
 
     cout << "Podaj nowe haslo:" << endl;
-    cin >> noweHaslo;
-    for (int i = 0; i < uzytkownicy.size(); i++)
+    cin >> newPassword;
+    for (int i = 0; i < users.size(); i++)
     {
-        if (idZalogowanegoUzytkownika == uzytkownicy[i].wypiszIdUzytkownika())
+        if (loggedUserId == users[i].getUserId())
         {
-            uzytkownicy[i].ustawHasloUzytkownika(noweHaslo);
-            plikZUzytkownikami.zapisanieZmienionegoHaslaDoPliku(uzytkownicy);
+            users[i].setUserPassword(newPassword);
+            fileWithUsers.saveNewPasswordToFile(newPassword, loggedUserId);
         }
     }
-    return uzytkownicy;
+    return users;
 }
 
-int UzytkownikMaster::wylogowanieUzytkownika()
+int UserMaster::getLoggedUserId()
 {
-    return idZalogowanegoUzytkownika = 0;
+    return loggedUserId;
 }
 
-bool UzytkownikMaster::czyUzytkownikJestZalogowany()
+int UserMaster::logoutUser()
 {
-    if (idZalogowanegoUzytkownika > 0)
+    return loggedUserId = 0;
+}
+
+bool UserMaster::checkIfUserIsLogIn()
+{
+    if (loggedUserId > 0)
         return true;
     else
         return false;
 }
-
-int UzytkownikMaster::pobierzIdZalogowanegoUzytkownika()
-{
-    return idZalogowanegoUzytkownika;
-}
-*/
