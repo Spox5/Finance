@@ -102,3 +102,18 @@ bool AuxiliaryFunctions::checkUserDate(string userDate)
     else
         return false;
 }
+
+bool AuxiliaryFunctions::checkAmountIsCorrect(string amount)
+{
+    for (int charPosition = 0; charPosition < amount.length(); charPosition++)
+        {
+            cout << amount[charPosition] << endl;
+            cout << amount.length();
+            if (amount[charPosition] < 48 || amount[charPosition] > 57)
+            {
+                cout << "Podana wysokosc przychodu jest nieprawidlowa." << endl;
+                return 0;
+            }
+        }
+    return 1;
+}

@@ -21,10 +21,11 @@ public:
     int getUserIdFromData();
     int getIncomeIdFromData();
     string setUserDate();
-    int checkNubmerOfDaysInMonth();
     bool sortingPredicate();
     void showSum();
     bool checkLeapYear();
+    bool checkAmountIsCorrect(string amount);
+    int getLastIncomeIdFromFile();
 
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
     int konwersjaStringNaInt(string liczba);
