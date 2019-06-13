@@ -35,10 +35,7 @@ public:
     void addIncome();
     /*
     void listaAdresatow();
-    void wyszukajAdresataPoImieniu();
-    void wyszukajAdresataPoNazwisku();
-    void usuniecieAdresata ();
-    void edycjaAdresata ();
+
     ;*/
 
 };

@@ -4,10 +4,27 @@ void IncomeMaster::addIncome()
 {
     vector <Income> incomes;
     Income income;
+
     string item, date;
     int amount;
 
-    cout << "Czy przychod dotyczy dnia dzisiejszego: " << endl;
+    cout << "Czy przychod dotyczy dnia dzisiejszego(t/n)." << endl;
+    string dayChoice;
+    while (cin >> dayChoice)
+    {
+        if (dayChoice == "t")
+        {
+            income.setDateText(auxiliaryFunctions.getCurrentDate());
+            break;
+        }
+        else if (dayChoice == "n")
+        {
+            income.setDateText(auxiliaryFunctions.getDateFromUser());
+            break;
+        }
+        else
+            cout << "Nieprawidlowy wybor." << endl;
+    }
 
     cout << "Podaj czego dotyczy przychod: " << endl;
     cin >> item;
@@ -15,7 +32,7 @@ void IncomeMaster::addIncome()
     cout << "Podaj wysokosc przychodu: " << endl;
     cin >> amount;
     income.setAmount(amount);
-    income.setLoggedUserId(1);
+
 
     CMarkup xml;
 

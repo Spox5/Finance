@@ -1,8 +1,10 @@
 #ifndef AUXILIARYFUNCTIONS_H
 #define AUXILIARYFUNCTIONS_H
 
+#include <iostream>
 #include <sstream>
-#include <fstream>
+#include <time.h>
+#include <algorithm>
 #include "Markup.h"
 
 using namespace std;
@@ -12,11 +14,13 @@ class AuxiliaryFunctions
 
 public:
 
+    string getCurrentDate();
+    string getDateFromUser();
+    bool checkUserDate(string userDate);
+
     int getUserIdFromData();
     int getIncomeIdFromData();
-    string getCurrentDate();
     string setUserDate();
-    bool checkUserDate();
     int checkNubmerOfDaysInMonth();
     bool sortingPredicate();
     void showSum();
