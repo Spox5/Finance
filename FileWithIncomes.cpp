@@ -39,7 +39,7 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
 {
     CMarkup xml;
 
-    bool fileExists = xml.Load("Przychody.xml");
+    bool fileExists = xml.Load(XMLFile::getFileName());
 
     if (!fileExists)
     {
@@ -57,5 +57,5 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
     xml.AddElem("Item", income.getItem());
     xml.AddElem("Amount", income.getAmount());
 
-    xml.Save("Przychody.xml");
+    xml.Save(XMLFile::getFileName());
 }

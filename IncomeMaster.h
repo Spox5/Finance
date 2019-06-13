@@ -7,11 +7,11 @@
 
 using namespace std;
 
-class IncomeMaster
+class IncomeMaster: public XMLFile
 {
     const int LOGGED_USER_ID;
     FileWithIncomes fileWithIncomes;
-    //FunkcjePomocnicze funkcjePomocnicze;
+    AuxiliaryFunctions auxiliaryFunctions;
     int getLastIncomeIdFromFile();
     //int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     vector <Income> incomes;
