@@ -59,3 +59,33 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
 
     xml.Save(XMLFile::getFileName());
 }
+
+string FileWithIncomes::getFileWithIncomesName()
+{
+    string fileName = XMLFile::getFileName();
+    return fileName;
+}
+
+int FileWithIncomes::getLastIncomeIdFromFile()
+{
+    CMarkup xml;
+    int lastIncomeIdFromFile = 0;
+
+    bool fileExists = xml.Load(getFileWithIncomesName());
+
+    if (!fileExists)
+        return 1;
+    else
+    {
+        xml.FindElem("Incomes");
+        xml.IntoElem();
+        while (xml.FindElem("Income"))
+        {
+            xml.IntoElem();
+            xml.FindElem("IncomeId");
+            lastIncomeIdFromFile = atoi(xml.GetElemContent().c_str()) + 1;
+            xml.OutOfElem();
+        }
+    }
+    return lastIncomeIdFromFile;
+}

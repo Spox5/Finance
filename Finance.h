@@ -15,8 +15,7 @@ class Finance
 
 
 public:
-    Finance(string fileWithUsersName)
-    : userMaster(fileWithUsersName){};
+
     Finance(string fileNameWithUsers, string fileNameWithIncomes)
     : userMaster(fileNameWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes)
     {

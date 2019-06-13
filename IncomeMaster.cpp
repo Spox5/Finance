@@ -4,8 +4,7 @@ void IncomeMaster::addIncome()
 {
     vector <Income> incomes;
     Income income;
-
-    string item, date;
+    string item, date, amountString;
     int amount;
 
     cout << "Czy przychod dotyczy dnia dzisiejszego(t/n)." << endl;
@@ -27,31 +26,22 @@ void IncomeMaster::addIncome()
     }
 
     cout << "Podaj czego dotyczy przychod: " << endl;
-    cin >> item;
+    cin.sync();
+    getline(cin>>ws, item);
     income.setItem(item);
-    cout << "Podaj wysokosc przychodu: " << endl;
-    cin >> amount;
-    income.setAmount(amount);
 
-
-    CMarkup xml;
-
-    bool fileExists = xml.Load("Przychody.xml");
-
-    if (!fileExists)
-        income.setIncomeId(1);
-    else
+    while(1)
     {
-        xml.FindElem("Incomes");
-        xml.IntoElem();
-        while (xml.FindElem("Income"))
+        cout << "Podaj wysokosc przychodu: " << endl;
+        cin >> amountString;
+        amount = atoi(amountString.c_str());
+        if (auxiliaryFunctions.checkAmountIsCorrect(amountString))
         {
-            xml.IntoElem();
-            xml.FindElem("IncomeId");
-            income.setIncomeId(atoi(xml.GetElemContent().c_str()) + 1);
-            xml.OutOfElem();
+            income.setAmount(amount);
+            break;
         }
     }
+    income.setIncomeId(fileWithIncomes.getLastIncomeIdFromFile());
     incomes.push_back(income);
     cout << "Nowy przychod zostal utworzony" << endl;
     system("pause");
