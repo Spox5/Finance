@@ -24,9 +24,9 @@ public:
     };
 
     void addIncome();
-    /*void listaAdresatow();
+    vector <Income> loadIncomesFromMainVectorToSortVector(vector <Income> incomes);
 
-    */
+
 };
 
 #endif*/

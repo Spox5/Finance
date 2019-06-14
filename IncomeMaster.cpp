@@ -48,3 +48,9 @@ void IncomeMaster::addIncome()
 
     fileWithIncomes.saveIncomeToFile(income, LOGGED_USER_ID);
 }
+
+vector <Income> IncomeMaster::loadIncomesFromMainVectorToSortVector(vector <Income> incomes)
+{
+    vector <Income> sortVectorWithIncomes;
+
+}

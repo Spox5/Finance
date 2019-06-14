@@ -105,4 +105,11 @@
 <Item>d</Item>
 <Amount>5</Amount>
 </Income>
+<Income>
+<IncomeId>16</IncomeId>
+<UserId>2</UserId>
+<Date>2019-6-14</Date>
+<Item>re</Item>
+<Amount>45</Amount>
+</Income>
 </Incomes>
