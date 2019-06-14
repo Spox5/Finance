@@ -18,20 +18,27 @@ vector <Income> FileWithIncomes::loadFileWithIncomes(int loggedUserId)
     while (xml.FindElem("Income"))
     {
         xml.IntoElem();
-        xml.FindElem("IncomeId");
-        income.setIncomeId(atoi(xml.GetElemContent().c_str()));
         xml.FindElem("UserId");
-        income.setLoggedUserId(atoi(xml.GetElemContent().c_str()));
-        xml.FindElem("IncomeDate");
-        income.setDateText(xml.GetElemContent());
-        xml.FindElem("IncomeItem");
-        income.setItem(xml.GetElemContent());
-        xml.FindElem("IncomeAmount");
-        income.setAmount(atoi(xml.GetElemContent().c_str()));
+        if (atoi(xml.GetElemContent().c_str()) == loggedUserId)
+        {
+            income.setLoggedUserId(atoi(xml.GetElemContent().c_str()));
+            xml.FindElem("IncomeId");
+            income.setIncomeId(atoi(xml.GetElemContent().c_str()));
+            xml.FindElem("IncomeDate");
+            income.setDateText(xml.GetElemContent());
+            xml.FindElem("IncomeItem");
+            income.setItem(xml.GetElemContent());
+            xml.FindElem("IncomeAmount");
+            income.setAmount(atoi(xml.GetElemContent().c_str()));
+            xml.OutOfElem();
+            incomes.push_back(income);
+        }
         xml.OutOfElem();
-        incomes.push_back(income);
     }
-
+    for (int i = 0; i < incomes.size(); i++)
+    {
+        cout << incomes[i].getAmount() << endl << incomes[i].getLoggedUserId() << endl << incomes[i].getItem() << endl;
+    }
     return incomes;
 }
 
