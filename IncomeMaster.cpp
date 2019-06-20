@@ -1,8 +1,7 @@
 #include "IncomeMaster.h"
-
+#include <algorithm>
 void IncomeMaster::addIncome()
 {
-    vector <Income> incomes;
     Income income;
     string item, date, amountString;
     int amount;
@@ -13,12 +12,18 @@ void IncomeMaster::addIncome()
     {
         if (dayChoice == "t")
         {
-            income.setDateText(auxiliaryFunctions.getCurrentDate());
+            income.setIncomeDateText(auxiliaryFunctions.getCurrentDate());
+            income.setIncomeDateYear(auxiliaryFunctions.getYearFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateMonth(auxiliaryFunctions.getMonthFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateDay(auxiliaryFunctions.getDayFromDateText(income.getIncomeDateText()));
             break;
         }
         else if (dayChoice == "n")
         {
-            income.setDateText(auxiliaryFunctions.getDateFromUser());
+            income.setIncomeDateText(auxiliaryFunctions.getDateFromUser());
+            income.setIncomeDateYear(auxiliaryFunctions.getYearFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateMonth(auxiliaryFunctions.getMonthFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateDay(auxiliaryFunctions.getDayFromDateText(income.getIncomeDateText()));
             break;
         }
         else
@@ -28,7 +33,7 @@ void IncomeMaster::addIncome()
     cout << "Podaj czego dotyczy przychod: " << endl;
     cin.sync();
     getline(cin>>ws, item);
-    income.setItem(item);
+    income.setIncomeItem(item);
 
     while(1)
     {
@@ -37,7 +42,7 @@ void IncomeMaster::addIncome()
         amount = atoi(amountString.c_str());
         if (auxiliaryFunctions.checkAmountIsCorrect(amountString))
         {
-            income.setAmount(amount);
+            income.setIncomeAmount(amount);
             break;
         }
     }
@@ -49,8 +54,88 @@ void IncomeMaster::addIncome()
     fileWithIncomes.saveIncomeToFile(income, LOGGED_USER_ID);
 }
 
-vector <Income> IncomeMaster::loadIncomesFromMainVectorToSortVector(vector <Income> incomes)
+void IncomeMaster::showIncomesFromCurrentMonth()
 {
-    vector <Income> sortVectorWithIncomes;
+    vector <Income> incomesToSort;
+
+    int currentMonth, currentYear;
+    currentMonth = auxiliaryFunctions.getMonth();
+    currentYear = auxiliaryFunctions.getYear();
+
+    for (int i = 0; i < incomes.size(); i++)
+    {
+        if (currentMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+            && currentYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+        {
+            incomesToSort.push_back(incomes[i]);
+        }
+    }
+    cout << incomesToSort.size() << endl;
+    sort(incomesToSort.begin(), incomesToSort.end(), auxiliaryFunctions.*sortingPredicate);
+}
+
+void IncomeMaster::showIncomesFromPreviousMonth()
+{
+    int monthBefore = auxiliaryFunctions.getMonth() - 1;
+    for (int i = 0; i < incomes.size(); i++)
+    {
+        if (monthBefore == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
+            cout << incomes[i].getIncomeItem() << " - " << incomes[i].getIncomeAmount() << endl;
+    }
+}
+
+void IncomeMaster::showIncomesFromPeriod()
+{
+    while (1)
+    {
+        cout << "Podaj date od ktorej rozpoczac wyswietlanie wynikow" << endl;
+        string firstDate = auxiliaryFunctions.getDateFromUser();
+        cout << "Podaj date na ktorej zakonczyc wyswietlanie wynikow" << endl;
+        string secondDate = auxiliaryFunctions.getDateFromUser();
+
+        if (auxiliaryFunctions.checkUsersDatesInShowPeriod(firstDate, secondDate) && auxiliaryFunctions.checkUserDate(firstDate)
+                && auxiliaryFunctions.checkUserDate(secondDate))
+        {
+            int firstDateYear = auxiliaryFunctions.getYearFromDateText(firstDate);
+            int firstDateMonth = auxiliaryFunctions.getMonthFromDateText(firstDate);
+            int firstDateDay = auxiliaryFunctions.getDayFromDateText(firstDate);
+            int secondDateYear = auxiliaryFunctions.getYearFromDateText(secondDate);
+            int secondDateMonth = auxiliaryFunctions.getMonthFromDateText(secondDate);
+            int secondDateDay = auxiliaryFunctions.getDayFromDateText(secondDate);
+
+            bool checkDates = 0;
+
+            for (int i = 0; i < incomes.size(); i++)
+            {
+                if (firstDateYear < auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
+                    && secondDateYear > auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                    checkDates = 1;
+                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
+                    || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                    && firstDateMonth < auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+                    && secondDateMonth > auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
+                    checkDates = 1;
+                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
+                    || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                    && (firstDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+                    || secondDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
+                    && (firstDateDay <= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())
+                    || secondDateDay >= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())))
+                    checkDates = 1;
+
+                if (checkDates == 1)
+                    cout << incomes[i].getIncomeItem() << " - " << incomes[i].getIncomeAmount() << endl;
+
+                checkDates = 0;
+            }
+            return;
+        }
+        else
+        {
+            cout << "Podane daty sa w nieprawidlowej kolejnosci lub ich format jest niewlasciwy" << endl;
+            system("pause");
+            system("cls");
+        }
+    }
 
 }
