@@ -31,6 +31,20 @@ void Finance::addIncome()
     incomeMaster->addIncome();
 }
 
+void Finance::showIncomesFromCurrentMonth()
+{
+    incomeMaster->showIncomesFromCurrentMonth();
+}
+
+void Finance::showIncomesFromPreviousMonth()
+{
+    incomeMaster->showIncomesFromPreviousMonth();
+}
+
+void Finance::showIncomesFromPeriod()
+{
+    incomeMaster->showIncomesFromPeriod();
+}
 /*void Finance::logOutUser()
 {
     userMaster.logOutUser();

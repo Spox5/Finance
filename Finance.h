@@ -32,10 +32,9 @@ public:
     int getLoggedUserId();
     void logOutUser();
     void addIncome();
-    /*
-    void listaAdresatow();
-
-    ;*/
+    void showIncomesFromCurrentMonth();
+    void showIncomesFromPreviousMonth();
+    void showIncomesFromPeriod();
 
 };
 

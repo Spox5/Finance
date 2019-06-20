@@ -23,9 +23,45 @@ string AuxiliaryFunctions::getCurrentDate()
     df << day;
     string dayString = df.str();
 
-    string currentDate = yearString + "-" + monthString + "-" + dayString;
+    string currentDate = "";
+    if (month > 10  && day > 10)
+        currentDate = yearString + "-" + monthString + "-" + dayString;
+    else if (month < 10 && day > 9)
+        currentDate = yearString + "-0" + monthString + "-" + dayString;
+    else if (month > 9 && day < 10)
+        currentDate = yearString + "-" + monthString + "-0" + dayString;
+    else if (month < 10 && day < 10)
+        currentDate = yearString + "-0" + monthString + "-0" + dayString;
 
     return currentDate;
+}
+
+int AuxiliaryFunctions::getMonth()
+{
+    time_t now = time(0);
+
+    char* dt = ctime(&now);
+
+    struct tm *date = localtime(&now);
+    int year = date->tm_year + 1900;
+    int month = date->tm_mon + 1;
+    int day = date->tm_mday;
+
+    return month;
+}
+
+int AuxiliaryFunctions::getYear()
+{
+    time_t now = time(0);
+
+    char* dt = ctime(&now);
+
+    struct tm *date = localtime(&now);
+    int year = date->tm_year + 1900;
+    int month = date->tm_mon + 1;
+    int day = date->tm_mday;
+
+    return year;
 }
 
 string AuxiliaryFunctions::getDateFromUser()
@@ -41,7 +77,6 @@ string AuxiliaryFunctions::getDateFromUser()
             cout << "Nieprawidlowa data. Wpisz ponownie date." << endl;
         }
     }
-
 }
 
 bool AuxiliaryFunctions::checkUserDate(string userDate)
@@ -107,8 +142,6 @@ bool AuxiliaryFunctions::checkAmountIsCorrect(string amount)
 {
     for (int charPosition = 0; charPosition < amount.length(); charPosition++)
         {
-            cout << amount[charPosition] << endl;
-            cout << amount.length();
             if (amount[charPosition] < 48 || amount[charPosition] > 57)
             {
                 cout << "Podana wysokosc przychodu jest nieprawidlowa." << endl;
@@ -116,4 +149,135 @@ bool AuxiliaryFunctions::checkAmountIsCorrect(string amount)
             }
         }
     return 1;
+}
+
+bool AuxiliaryFunctions::checkUsersDatesInShowPeriod(string firstDate, string secondDate)
+{
+    int firstDateYear = getYearFromDateText(firstDate);
+    int firstDateMonth = getMonthFromDateText(firstDate);
+    int firstDateDay = getDayFromDateText(firstDate);
+    int secondDateYear = getYearFromDateText(secondDate);
+    int secondDateMonth = getMonthFromDateText(secondDate);
+    int secondDateDay = getDayFromDateText(secondDate);
+
+    if (firstDateYear < secondDateYear)
+        return true;
+    else if (firstDateYear == secondDateYear && firstDateMonth < secondDateMonth)
+        return true;
+    else if (firstDateYear == secondDateYear && firstDateMonth == secondDateMonth && firstDateDay <= secondDateDay)
+        return true;
+    else
+        return false;
+}
+
+int AuxiliaryFunctions::getYearFromDateText(string dateToBreak)
+{
+    int year, month, day;
+    string simplyData = "";
+    int simplyDataNumber = 1;
+
+    for (int charPosition = 0; charPosition <= dateToBreak.length(); charPosition++)
+    {
+        if (dateToBreak[charPosition] != '-' && charPosition != 10)
+        {
+            simplyData += dateToBreak[charPosition];
+        }
+        else
+        {
+            switch(simplyDataNumber)
+            {
+            case 1:
+                year = atoi(simplyData.c_str());
+                break;
+            case 2:
+                month = atoi(simplyData.c_str());
+                break;
+            case 3:
+                day = atoi(simplyData.c_str());
+                break;
+            }
+            simplyData = "";
+            simplyDataNumber++;
+        }
+    }
+    return year;
+}
+
+int AuxiliaryFunctions::getMonthFromDateText(string dateToBreak)
+{
+    int year, month, day;
+    string simplyData = "";
+    int simplyDataNumber = 1;
+
+    for (int charPosition = 0; charPosition <= dateToBreak.length(); charPosition++)
+    {
+        if (dateToBreak[charPosition] != '-' && charPosition != 10)
+        {
+            simplyData += dateToBreak[charPosition];
+        }
+        else
+        {
+            switch(simplyDataNumber)
+            {
+            case 1:
+                year = atoi(simplyData.c_str());
+                break;
+            case 2:
+                month = atoi(simplyData.c_str());
+                break;
+            case 3:
+                day = atoi(simplyData.c_str());
+                break;
+            }
+            simplyData = "";
+            simplyDataNumber++;
+        }
+    }
+    return month;
+}
+
+int AuxiliaryFunctions::getDayFromDateText(string dateToBreak)
+{
+    int year, month, day;
+    string simplyData = "";
+    int simplyDataNumber = 1;
+
+    for (int charPosition = 0; charPosition <= dateToBreak.length(); charPosition++)
+    {
+        if (dateToBreak[charPosition] != '-' && charPosition != 10)
+        {
+            simplyData += dateToBreak[charPosition];
+        }
+        else
+        {
+            switch(simplyDataNumber)
+            {
+            case 1:
+                year = atoi(simplyData.c_str());
+                break;
+            case 2:
+                month = atoi(simplyData.c_str());
+                break;
+            case 3:
+                day = atoi(simplyData.c_str());
+                break;
+            }
+            simplyData = "";
+            simplyDataNumber++;
+        }
+    }
+    return day;
+}
+
+bool AuxiliaryFunctions::sortingPredicate(Income i1, Income i2)
+{
+    if (i1.getIncomeDateYear() < i2.getIncomeDateYear())
+        return true;
+    else if ((i1.getIncomeDateYear() == i2.getIncomeDateYear()) && (i1.getIncomeDateMonth() <i2.getIncomeDateMonth()))
+        return true;
+    else if ((i1.getIncomeDateYear() == i2.getIncomeDateYear()) && (i1.getIncomeDateMonth() <i2.getIncomeDateMonth())
+             && (i1.getIncomeDateDay() < i2.getIncomeDateDay()))
+        return true;
+    else
+        return false;
 }

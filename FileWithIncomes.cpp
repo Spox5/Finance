@@ -15,29 +15,31 @@ vector <Income> FileWithIncomes::loadFileWithIncomes(int loggedUserId)
 
     xml.FindElem("Incomes");
     xml.IntoElem();
+
     while (xml.FindElem("Income"))
     {
         xml.IntoElem();
         xml.FindElem("UserId");
-        if (atoi(xml.GetElemContent().c_str()) == loggedUserId)
+        if (loggedUserId == atoi(xml.GetElemContent().c_str()))
         {
             income.setLoggedUserId(atoi(xml.GetElemContent().c_str()));
+            xml.FindElem("IncomeDate");
+            income.setIncomeDateText(xml.GetElemContent());
+
+            income.setIncomeDateYear(auxiliaryFunctions.getYearFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateMonth(auxiliaryFunctions.getMonthFromDateText(income.getIncomeDateText()));
+            income.setIncomeDateDay(auxiliaryFunctions.getDayFromDateText(income.getIncomeDateText()));
+
             xml.FindElem("IncomeId");
             income.setIncomeId(atoi(xml.GetElemContent().c_str()));
-            xml.FindElem("IncomeDate");
-            income.setDateText(xml.GetElemContent());
             xml.FindElem("IncomeItem");
-            income.setItem(xml.GetElemContent());
+            income.setIncomeItem(xml.GetElemContent());
             xml.FindElem("IncomeAmount");
-            income.setAmount(atoi(xml.GetElemContent().c_str()));
-            xml.OutOfElem();
+            income.setIncomeAmount(atoi(xml.GetElemContent().c_str()));
             incomes.push_back(income);
         }
+
         xml.OutOfElem();
-    }
-    for (int i = 0; i < incomes.size(); i++)
-    {
-        cout << incomes[i].getAmount() << endl << incomes[i].getLoggedUserId() << endl << incomes[i].getItem() << endl;
     }
     return incomes;
 }
@@ -60,9 +62,12 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
     xml.IntoElem();
     xml.AddElem("IncomeId", income.getIncomeId());
     xml.AddElem("UserId", loggedUserId);
-    xml.AddElem("Date", income.getDateText());
-    xml.AddElem("Item", income.getItem());
-    xml.AddElem("Amount", income.getAmount());
+    xml.AddElem("IncomeDate", income.getIncomeDateText());
+    //xml.AddElem("IncomeDateYear", income.getIncomeDateYear());
+    //xml.AddElem("IncomeDateMonth", income.getIncomeDateMonth());
+    //xml.AddElem("IncomeDateDay", income.getIncomeDateDay());
+    xml.AddElem("IncomeItem", income.getIncomeItem());
+    xml.AddElem("IncomeAmount", income.getIncomeAmount());
 
     xml.Save(XMLFile::getFileName());
 }

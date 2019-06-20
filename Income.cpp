@@ -20,62 +20,62 @@ int Income::getLoggedUserId()
     return loggedUserId;
 }
 
-void Income::setDateYear(int newDateYear)
+void Income::setIncomeDateYear(int newDateYear)
 {
     dateYear = newDateYear;
 }
 
-int Income::getDateYear()
+int Income::getIncomeDateYear()
 {
     return dateYear;
 }
 
-void Income::setDateMonth(int newDateMonth)
+void Income::setIncomeDateMonth(int newDateMonth)
 {
     dateMonth = newDateMonth;
 }
 
-int Income::getDateMonth()
+int Income::getIncomeDateMonth()
 {
     return dateMonth;
 }
 
-void Income::setDateDay(int newDateDay)
+void Income::setIncomeDateDay(int newDateDay)
 {
     dateDay = newDateDay;
 }
 
-int Income::getDateDay()
+int Income::getIncomeDateDay()
 {
     return dateDay;
 }
 
-void Income::setItem(string newItem)
+void Income::setIncomeItem(string newItem)
 {
-    item = newItem;
+    incomeItem = newItem;
 }
 
-string Income::getItem()
+string Income::getIncomeItem()
 {
-    return item;
+    return incomeItem;
 }
 
-void Income::setDateText(string newDateText)
+void Income::setIncomeDateText(string newDateText)
 {
-    dateText = newDateText;
+    incomeDateText = newDateText;
 }
 
-string Income::getDateText()
+string Income::getIncomeDateText()
 {
-    return dateText;
+    return incomeDateText;
 }
 
-void Income::setAmount(int newAmount)
+void Income::setIncomeAmount(int newAmount)
 {
-    amount = newAmount;
+    incomeAmount = newAmount;
 }
 
-int Income::getAmount()
+int Income::getIncomeAmount()
 {
-    return amount;
+    return incomeAmount;
 }

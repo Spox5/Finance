@@ -11,21 +11,21 @@ using namespace std;
 class Income
 {
     int incomeId, loggedUserId, dateYear, dateMonth, dateDay;
-    string item, dateText;
-    int amount;
+    string incomeItem, incomeDateText;
+    int incomeAmount;
 
 public:
     Income (int incomeId = 0, int loggedUserId = 0, int dateYear = 0, int dateMonth = 0, int dateDay = 0,
-            string item = "", string dateText = "", int amount = 0)
+            string incomeItem = "", string incomeDateText = "", int incomeAmount = 0)
     {
         this->incomeId = incomeId;
         this->loggedUserId = loggedUserId;
         this->dateYear = dateYear;
         this->dateMonth = dateMonth;
         this->dateDay = dateDay;
-        this->item = item;
-        this->dateText = dateText;
-        this->amount = amount;
+        this->incomeItem = incomeItem;
+        this->incomeDateText = incomeDateText;
+        this->incomeAmount = incomeAmount;
     }
 
     void setIncomeId(int newIncomeId);
@@ -34,23 +34,23 @@ public:
     void setLoggedUserId(int newLoggedUserId);
     int getLoggedUserId();
 
-    void setDateYear(int newDateYear);
-    int getDateYear();
+    void setIncomeDateYear(int newDateYear);
+    int getIncomeDateYear();
 
-    void setDateMonth(int newDateMonth);
-    int getDateMonth();
+    void setIncomeDateMonth(int newDateMonth);
+    int getIncomeDateMonth();
 
-    void setDateDay(int newDateDay);
-    int getDateDay();
+    void setIncomeDateDay(int newDateDay);
+    int getIncomeDateDay();
 
-    void setItem(string newItem);
-    string getItem();
+    void setIncomeItem(string newItem);
+    string getIncomeItem();
 
-    void setDateText(string newDateTExt);
-    string getDateText();
+    void setIncomeDateText(string newDateTExt);
+    string getIncomeDateText();
 
-    void setAmount(int newAmount);
-    int getAmount();
+    void setIncomeAmount(int newAmount);
+    int getIncomeAmount();
 
 };
 

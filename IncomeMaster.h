@@ -24,7 +24,14 @@ public:
     };
 
     void addIncome();
+    void showIncomesFromCurrentMonth();
+    void showIncomesFromPreviousMonth();
+    void showIncomesFromPeriod();
+    void breakIncomeDateText();
     vector <Income> loadIncomesFromMainVectorToSortVector(vector <Income> incomes);
+    int getYearFromDateText(string dateToBreak);
+    int getMonthFromDateText (string dateToBreak);
+    int getDayFromDateText (string dateToBreak);
 
 
 };
