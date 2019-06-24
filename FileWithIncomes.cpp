@@ -10,7 +10,7 @@ vector <Income> FileWithIncomes::loadFileWithIncomes(int loggedUserId)
 
     if (!fileExists)
     {
-        cout << "Baza wydatkow jest pusta." << endl;
+        cout << "Baza przychodow jest pusta." << endl;
     }
 
     xml.FindElem("Incomes");
