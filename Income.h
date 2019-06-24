@@ -28,6 +28,18 @@ public:
         this->incomeAmount = incomeAmount;
     }
 
+    bool operator<(const Income& val) const
+    {
+        if (dateYear < val.dateYear)
+            return true;
+        else if ((dateYear == val.dateYear) && (dateMonth < val.dateMonth))
+            return true;
+        else if ((dateYear == val.dateYear) && (dateMonth == val.dateMonth) && dateDay < val.dateDay)
+            return true;
+        else
+            return false;
+    }
+
     void setIncomeId(int newIncomeId);
     int getIncomeId();
 

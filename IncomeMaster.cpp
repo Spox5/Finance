@@ -65,27 +65,46 @@ void IncomeMaster::showIncomesFromCurrentMonth()
     for (int i = 0; i < incomes.size(); i++)
     {
         if (currentMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
-            && currentYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                && currentYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
         {
             incomesToSort.push_back(incomes[i]);
         }
     }
-    cout << incomesToSort.size() << endl;
-    sort(incomesToSort.begin(), incomesToSort.end(), auxiliaryFunctions.*sortingPredicate);
+    sort(incomesToSort.begin(), incomesToSort.end());
+    for (int i = 0; i < incomesToSort.size(); i++)
+    {
+        cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
+    }
 }
 
 void IncomeMaster::showIncomesFromPreviousMonth()
 {
-    int monthBefore = auxiliaryFunctions.getMonth() - 1;
+    vector <Income> incomesToSort;
+
+    int monthBefore;
+    int currentYear;
+    monthBefore = auxiliaryFunctions.getMonth() - 1;
+    currentYear = auxiliaryFunctions.getYear();
+
     for (int i = 0; i < incomes.size(); i++)
     {
-        if (monthBefore == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
-            cout << incomes[i].getIncomeItem() << " - " << incomes[i].getIncomeAmount() << endl;
+        if (monthBefore == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+                && currentYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+        {
+            incomesToSort.push_back(incomes[i]);
+        }
+    }
+    sort(incomesToSort.begin(), incomesToSort.end());
+    for (int i = 0; i < incomesToSort.size(); i++)
+    {
+        cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
     }
 }
 
 void IncomeMaster::showIncomesFromPeriod()
 {
+    vector <Income> incomesToSort;
+
     while (1)
     {
         cout << "Podaj date od ktorej rozpoczac wyswietlanie wynikow" << endl;
@@ -108,25 +127,31 @@ void IncomeMaster::showIncomesFromPeriod()
             for (int i = 0; i < incomes.size(); i++)
             {
                 if (firstDateYear < auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
-                    && secondDateYear > auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                        && secondDateYear > auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
                     checkDates = 1;
                 else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
-                    || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
-                    && firstDateMonth < auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
-                    && secondDateMonth > auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
+                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                         && firstDateMonth < auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+                         && secondDateMonth > auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
                     checkDates = 1;
                 else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText())
-                    || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
-                    && (firstDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
-                    || secondDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
-                    && (firstDateDay <= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())
-                    || secondDateDay >= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())))
+                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomes[i].getIncomeDateText()))
+                         && (firstDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText())
+                             || secondDateMonth == auxiliaryFunctions.getMonthFromDateText(incomes[i].getIncomeDateText()))
+                         && (firstDateDay <= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())
+                             || secondDateDay >= auxiliaryFunctions.getDayFromDateText(incomes[i].getIncomeDateText())))
                     checkDates = 1;
 
                 if (checkDates == 1)
-                    cout << incomes[i].getIncomeItem() << " - " << incomes[i].getIncomeAmount() << endl;
+                    incomesToSort.push_back(incomes[i]);
 
                 checkDates = 0;
+
+            }
+            sort(incomesToSort.begin(), incomesToSort.end());
+            for (int i = 0; i < incomesToSort.size(); i++)
+            {
+                cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
             }
             return;
         }
@@ -137,5 +162,4 @@ void IncomeMaster::showIncomesFromPeriod()
             system("cls");
         }
     }
-
 }

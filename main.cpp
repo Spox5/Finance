@@ -8,7 +8,7 @@ int main()
 {
     Finance finance("Uzytkownicy.xml", "Przychody.xml");
     finance.logInTheUser();
-    finance.showIncomesFromCurrentMonth();
+    finance.showIncomesFromPeriod();
 
 
 
