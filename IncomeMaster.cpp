@@ -71,10 +71,14 @@ void IncomeMaster::showIncomesFromCurrentMonth()
         }
     }
     sort(incomesToSort.begin(), incomesToSort.end());
+    system("cls");
+    cout << "Bilans z biezacego miesiaca:" << endl << endl;
     for (int i = 0; i < incomesToSort.size(); i++)
     {
-        cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
+        cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
+        << incomesToSort[i].getIncomeAmount() << endl << endl;
     }
+    system("pause");
 }
 
 void IncomeMaster::showIncomesFromPreviousMonth()
@@ -95,10 +99,14 @@ void IncomeMaster::showIncomesFromPreviousMonth()
         }
     }
     sort(incomesToSort.begin(), incomesToSort.end());
+    system("cls");
+    cout << "Bilans z poprzedniego miesiaca:" << endl << endl;
     for (int i = 0; i < incomesToSort.size(); i++)
     {
-        cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
+        cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
+        << incomesToSort[i].getIncomeAmount() << endl << endl;
     }
+    system("pause");
 }
 
 void IncomeMaster::showIncomesFromPeriod()
@@ -149,10 +157,14 @@ void IncomeMaster::showIncomesFromPeriod()
 
             }
             sort(incomesToSort.begin(), incomesToSort.end());
+            system("cls");
+            cout << "Bilans z okresu: " << firstDate << " - " << secondDate << endl << endl;
             for (int i = 0; i < incomesToSort.size(); i++)
             {
-                cout << incomesToSort[i].getIncomeItem() << " - " << incomesToSort[i].getIncomeAmount() << endl;
+                cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
+                << incomesToSort[i].getIncomeAmount() << endl << endl;
             }
+            system("pause");
             return;
         }
         else

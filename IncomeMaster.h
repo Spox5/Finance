@@ -13,7 +13,12 @@ class IncomeMaster
     FileWithIncomes fileWithIncomes;
     AuxiliaryFunctions auxiliaryFunctions;
     int getLastIncomeIdFromFile();
-    vector <Income> incomes;
+
+    void breakIncomeDateText();
+    vector <Income> loadIncomesFromMainVectorToSortVector(vector <Income> incomes);
+    int getYearFromDateText(string dateToBreak);
+    int getMonthFromDateText (string dateToBreak);
+    int getDayFromDateText (string dateToBreak);
 
 
 public:
@@ -22,18 +27,12 @@ public:
     {
     incomes = fileWithIncomes.loadFileWithIncomes(LOGGED_USER_ID);
     };
-
+    vector <Income> incomes;
     void addIncome();
     void showIncomesFromCurrentMonth();
     void showIncomesFromPreviousMonth();
     void showIncomesFromPeriod();
-    void breakIncomeDateText();
-    vector <Income> loadIncomesFromMainVectorToSortVector(vector <Income> incomes);
-    int getYearFromDateText(string dateToBreak);
-    int getMonthFromDateText (string dateToBreak);
-    int getDayFromDateText (string dateToBreak);
-
 
 };
 
-#endif*/
+#endif
