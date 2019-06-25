@@ -11,8 +11,8 @@
     </coordinates>
     <panel_attributes>FileWithUsers
 --
+FileWithUsers()
 + loadFileWithUsers() : vector &lt;User&gt;
-+ getUserData() : User
 + saveNewUserToFile() : void
 + saveNewPasswordToFile() : void
 
@@ -23,15 +23,19 @@
     <id>UMLClass</id>
     <coordinates>
       <x>380</x>
-      <y>290</y>
+      <y>265</y>
       <w>140</w>
-      <h>45</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>FileWithIncomes
 --
-- getIncomeData() : Income
+AuxiliaryFunctions auxiliaryFunctions
+- getFileWithIncomeName() : String
+--
+FileWithIncomes()
 + loadFileWithIncomes() : vector &lt;Income&gt;
-+ saveIncomeToFile() : void</panel_attributes>
++ saveIncomeToFile() : void
++ getLastIncomeIdFromFile() : Int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -40,20 +44,21 @@
       <x>270</x>
       <y>350</y>
       <w>145</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>Income
 --
 - incomeId : Int
 - userId : Int
-- item : String
-- amount : Float
-- dataText : String
-- dataYear : Int
-- dataMonth : Int
-- dataDay : Int
+- incomeItem : String
+- incomeAmount : Float
+- incomeDateText : String
+- dateYear : Int
+- dateMonth : Int
+- dateDay : Int
 --
-Income()</panel_attributes>
+Income()
++ operator&lt; : Bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -62,19 +67,22 @@ Income()</panel_attributes>
       <x>545</x>
       <y>245</y>
       <w>145</w>
-      <h>95</h>
+      <h>115</h>
     </coordinates>
     <panel_attributes>AuxiliaryFunctions
 --
-+ getUserIdFromData() : Int
-+ getIncomeIdFromData() : Int
-+ getCurrentDate() : String
-+ setUserDate() : String
++ getCurrentDate() : Strig
++ getMonth() : Int
++ getYear() : Int
++ getDateFromUser() : String
 + checkUserDate() : Bool
-+ checkNumberOfDaysInMonth() : Int
-+ sortingPredicate() : Bool
-+ showSum() : void
-+ checkLeapYear() : Bool</panel_attributes>
++ checkAmountIsCorrect() : Bool
++ checkUsersDatesInShowPeriod() : Bool
++ getYearFromDateText() : Int
++ getMonthFromDateText() : Int
++ getDayFromDateText() : Int
++ showBalance() : void
++ replaceCommaToDot() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -106,29 +114,25 @@ UserMaster()
       <x>220</x>
       <y>245</y>
       <w>140</w>
-      <h>100</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>IncomeMaster
 --
-- SIGNIN_USER_ID : const Int
+- LOGGED_USER_ID : const Int
 - fileWithIncomes : FileWithIncomes
 - auxiliaryFunctions : AuxiliaryFunctions
-- incomes : vector &lt;Incomes&gt;
 --
 IncomeMaster()
-- getLastIncomeIdFromFile() : Int
++ incomes : vector &lt;Incomes&gt;
 + addIncome() : void 
-+ showIncomesFromPresentMonth(): void
-+ showIncomesFromPreviousMonth() : void
-+ showIncomesFromPeriod() : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>295</x>
-      <y>550</y>
+      <x>310</x>
+      <y>555</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -136,37 +140,34 @@ IncomeMaster()
 --
 - expenseId : Int
 - userId : Int
-- item : String
-- amount : Float
-- dataText : String
+- expenseItem : String
+- expenseAmount : Float
+- expenseDataText : String
 - dataYear : Int
 - dataMonth : Int
 - dataDay : Int
 --
-Expense()</panel_attributes>
+Expense()
+operator&lt; : Bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>215</x>
-      <y>445</y>
+      <y>455</y>
       <w>140</w>
-      <h>100</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>ExpenseMaster
 --
-- SIGNIN_USER_ID : const Int
+- LOGGED_USER_ID : const Int
 - fileWithExpenses : FileWithExpenses
 - auxiliaryFunctions : AuxiliaryFunctions
-- expenses : vector &lt;Expenses&gt;
 --
 ExpenseMaster()
-- getLastExpenseIdFromFile() : Int
++ expenses : vector &lt;Expenses&gt;
 + addExpense() : void 
-+ showExpensesFromPresentMonth(): void
-+ showExpensesFromPreviousMonth() : void
-+ showExpensesFromPeriod() : void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -190,16 +191,20 @@ ExpenseMaster()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>375</x>
-      <y>475</y>
+      <x>390</x>
+      <y>470</y>
       <w>140</w>
-      <h>45</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>FileWithExpenses
 --
-- getExpenseData() : Expense
+AuxiliaryFunctions auxiliaryFunctions
+- getFileWithExpensesName() : String
+--
+FileWithExpenses()
 + loadFileWithExpenses() : vector &lt;Expense&gt;
-+ saveExpenseToFile() : void</panel_attributes>
++ saveExpenseToFile() : void
++ getLastExpenseIdFromFile() : Int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -208,7 +213,7 @@ ExpenseMaster()
       <x>15</x>
       <y>210</y>
       <w>160</w>
-      <h>175</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Finance
 --
@@ -219,19 +224,17 @@ ExpenseMaster()
 - FILE_WITH_EXPENSES_NAME : const String
 --
 Finance()
+~Finance()
 + registerTheUser() : void
-+ signInTheUser() : void
++ logInTheUser() : void
 + changeUserPassword() : void
 + getLoggedInUserId() : Int
++ logOuUser() : void
 + addIncome() : void
-+ showIncomesFromPresentMonth(): void
-+ showIncomesFromPreviousMonth() : void
-+ showIncomesFromPeriod() : void
 + addExpense() : void
-+ showExpensesFromPresentMonth(): void
-+ showExpensesFromPreviousMonth() : void
-+ showExpensesFromPeriod() : void
-+ signOutTheUser() : void</panel_attributes>
++ showBalanceFromCurrentMonth() : void
++ showIncomesFromPreviousMonth() : void
++ showIncomesFromPeriod() : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -242,11 +245,11 @@ Finance()
       <w>105</w>
       <h>55</h>
     </coordinates>
-    <panel_attributes>TextFile
+    <panel_attributes>XMLFile
 --
 - FILE_NAME : const String
 --
-TextFile()
+XMLFile()
 + getFileName() : String
 + fileIsEmpty() : Bool</panel_attributes>
     <additional_attributes/>
@@ -279,10 +282,10 @@ TextFile()
       <x>420</x>
       <y>190</y>
       <w>135</w>
-      <h>90</h>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;250.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -321,7 +324,7 @@ TextFile()
     <id>Relation</id>
     <coordinates>
       <x>355</x>
-      <y>275</y>
+      <y>255</y>
       <w>200</w>
       <h>15</h>
     </coordinates>
@@ -343,34 +346,34 @@ TextFile()
     <id>Relation</id>
     <coordinates>
       <x>350</x>
-      <y>335</y>
+      <y>355</y>
       <w>235</w>
-      <h>155</h>
+      <h>145</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;290.0;450.0;10.0</additional_attributes>
+    <additional_attributes>10.0;270.0;450.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>335</y>
-      <w>145</w>
-      <h>170</h>
+      <x>525</x>
+      <y>355</y>
+      <w>130</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;320.0;270.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;240.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
+      <x>525</x>
       <y>325</y>
-      <w>260</w>
+      <w>245</w>
       <h>195</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>500.0;10.0;10.0;370.0</additional_attributes>
+    <additional_attributes>470.0;10.0;10.0;370.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -398,45 +401,45 @@ TextFile()
     <id>Relation</id>
     <coordinates>
       <x>250</x>
-      <y>340</y>
+      <y>320</y>
       <w>30</w>
-      <h>70</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;40.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;40.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>265</x>
-      <y>540</y>
-      <w>40</w>
-      <h>65</h>
+      <y>530</y>
+      <w>55</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>515</y>
+      <x>455</x>
+      <y>535</y>
       <w>15</w>
-      <h>45</h>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;..</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>350</x>
       <y>495</y>
-      <w>35</w>
-      <h>15</h>
+      <w>50</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;30.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -453,12 +456,12 @@ TextFile()
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>380</y>
+      <y>365</y>
       <w>75</w>
-      <h>115</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;210.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;260.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -481,5 +484,38 @@ TextFile()
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;110.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>635</x>
+      <y>140</y>
+      <w>85</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>Markup</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>145</y>
+      <w>75</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>160</y>
+      <w>15</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
