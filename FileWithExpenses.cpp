@@ -35,10 +35,9 @@ vector <Expense> FileWithExpenses::loadFileWithExpenses(int loggedUserId)
             xml.FindElem("ExpenseItem");
             expense.setExpenseItem(xml.GetElemContent());
             xml.FindElem("ExpenseAmount");
-            expense.setExpenseAmount(atoi(xml.GetElemContent().c_str()));
+            expense.setExpenseAmount(atof(xml.GetElemContent().c_str()));
             expenses.push_back(expense);
         }
-
         xml.OutOfElem();
     }
     return expenses;
@@ -63,11 +62,11 @@ void FileWithExpenses::saveExpenseToFile(Expense expense, int loggedUserId)
     xml.AddElem("ExpenseId", expense.getExpenseId());
     xml.AddElem("UserId", loggedUserId);
     xml.AddElem("ExpenseDate", expense.getExpenseDateText());
-    //xml.AddElem("expenseDateYear", expense.getIncomeDateYear());
-    //xml.AddElem("IncomeDateMonth", income.getIncomeDateMonth());
-    //xml.AddElem("IncomeDateDay", income.getIncomeDateDay());
     xml.AddElem("ExpenseItem", expense.getExpenseItem());
-    xml.AddElem("ExpenseAmount", expense.getExpenseAmount());
+    ostringstream strs;
+    strs << expense.getExpenseAmount();
+    string str = strs.str();
+    xml.AddElem("ExpenseAmount", str);
 
     xml.Save(XMLFile::getFileName());
 }

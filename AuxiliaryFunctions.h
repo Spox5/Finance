@@ -21,29 +21,13 @@ public:
     int getYear();
     string getDateFromUser();
     bool checkUserDate(string userDate);
-
-    int getUserIdFromData();
-    int getIncomeIdFromData();
-    string setUserDate();
-    bool sortingPredicate(Income i1, Income i2);
-
-    bool checkLeapYear();
     bool checkAmountIsCorrect(string amount);
     bool checkUsersDatesInShowPeriod(string firstDate, string secondDate);
-
     int getYearFromDateText(string dateToBreak);
     int getMonthFromDateText(string dateToBreak);
     int getDayFromDateText(string dateToBreak);
-
-    int getLastIncomeIdFromFile();
-
-
     void showBalance(vector <Income> vector1ToSum, vector <Expense> vector2ToSum);
-    string pobierzLiczbe(string tekst, int pozycjaZnaku);
-    int konwersjaStringNaInt(string liczba);
-    int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-
+    string replaceCommaToDot(string stringToReplace);
 };
 
 #endif

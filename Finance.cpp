@@ -43,15 +43,10 @@ void Finance::showBalanceFromCurrentMonth()
     vector <Income> incomesToSort;
     vector <Expense> expensesToSort;
 
-    int currentMonth;
-    int currentYear;
-    currentMonth = auxiliaryFunctions.getMonth();
-    currentYear = auxiliaryFunctions.getYear();
-
     for (int i = 0; i < incomeMaster->incomes.size(); i++)
     {
-        if (currentMonth == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                && currentYear == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+        if (auxiliaryFunctions.getMonth() == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                && auxiliaryFunctions.getYear() == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
         {
             incomesToSort.push_back(incomeMaster->incomes[i]);
         }
@@ -60,8 +55,8 @@ void Finance::showBalanceFromCurrentMonth()
 
     for (int i = 0; i < expenseMaster->expenses.size(); i++)
     {
-        if (currentMonth == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                && currentYear == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+        if (auxiliaryFunctions.getMonth() == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                && auxiliaryFunctions.getYear() == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
         {
             expensesToSort.push_back(expenseMaster->expenses[i]);
         }
@@ -71,26 +66,7 @@ void Finance::showBalanceFromCurrentMonth()
     system("cls");
     cout << "Bilans z biezacego miesiaca:" << endl << endl;
 
-    cout << "Przychody: " << endl;
-    for (int i = 0; i < incomesToSort.size(); i++)
-    {
-        cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
-             << incomesToSort[i].getIncomeAmount() << endl;
-    }
-    cout << endl;
-
-    cout << "Wydatki: " << endl;
-    for (int i = 0; i < expensesToSort.size(); i++)
-    {
-        cout << expensesToSort[i].getExpenseDateText() << " - " << expensesToSort[i].getExpenseItem() << " - "
-             << expensesToSort[i].getExpenseAmount() << endl;
-    }
-    cout << endl;
-
     auxiliaryFunctions.showBalance(incomesToSort, expensesToSort);
-
-    cout << endl;
-    system("pause");
 }
 
 void Finance::showIncomesFromPreviousMonth()
@@ -127,26 +103,7 @@ void Finance::showIncomesFromPreviousMonth()
     system("cls");
     cout << "Bilans z poprzedniego miesiaca:" << endl << endl;
 
-    cout << "Przychody: " << endl;
-    for (int i = 0; i < incomesToSort.size(); i++)
-    {
-        cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
-             << incomesToSort[i].getIncomeAmount() << endl;
-    }
-    cout << endl;
-
-    cout << "Wydatki: " << endl;
-    for (int i = 0; i < expensesToSort.size(); i++)
-    {
-        cout << expensesToSort[i].getExpenseDateText() << " - " << expensesToSort[i].getExpenseItem() << " - "
-             << expensesToSort[i].getExpenseAmount() << endl;
-    }
-    cout << endl;
-
     auxiliaryFunctions.showBalance(incomesToSort, expensesToSort);
-
-    cout << endl;
-    system("pause");
 }
 
 void Finance::showIncomesFromPeriod()
@@ -165,31 +122,25 @@ void Finance::showIncomesFromPeriod()
         if (auxiliaryFunctions.checkUsersDatesInShowPeriod(firstDate, secondDate) && auxiliaryFunctions.checkUserDate(firstDate)
                 && auxiliaryFunctions.checkUserDate(secondDate))
         {
-            int firstDateYear = auxiliaryFunctions.getYearFromDateText(firstDate);
-            int firstDateMonth = auxiliaryFunctions.getMonthFromDateText(firstDate);
-            int firstDateDay = auxiliaryFunctions.getDayFromDateText(firstDate);
-            int secondDateYear = auxiliaryFunctions.getYearFromDateText(secondDate);
-            int secondDateMonth = auxiliaryFunctions.getMonthFromDateText(secondDate);
-            int secondDateDay = auxiliaryFunctions.getDayFromDateText(secondDate);
 
             bool checkDates = 0;
 
             for (int i = 0; i < incomeMaster->incomes.size(); i++)
             {
-                if (firstDateYear < auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                        && secondDateYear > auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+                if (auxiliaryFunctions.getYearFromDateText(firstDate) < auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                        && auxiliaryFunctions.getYearFromDateText(secondDate) > auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
                     checkDates = 1;
-                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
-                         && firstDateMonth < auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                         && secondDateMonth > auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+                else if ((auxiliaryFunctions.getYearFromDateText(firstDate) == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                          || auxiliaryFunctions.getYearFromDateText(secondDate) == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+                         && auxiliaryFunctions.getMonthFromDateText(firstDate) < auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                         && auxiliaryFunctions.getMonthFromDateText(secondDate) > auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
                     checkDates = 1;
-                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
-                         && (firstDateMonth == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                             || secondDateMonth == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
-                         && (firstDateDay <= auxiliaryFunctions.getDayFromDateText(incomeMaster->incomes[i].getIncomeDateText())
-                         && secondDateDay >= auxiliaryFunctions.getDayFromDateText(incomeMaster->incomes[i].getIncomeDateText())))
+                else if ((auxiliaryFunctions.getYearFromDateText(firstDate) == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                          || auxiliaryFunctions.getYearFromDateText(secondDate) == auxiliaryFunctions.getYearFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+                         && (auxiliaryFunctions.getMonthFromDateText(firstDate) == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                             || auxiliaryFunctions.getMonthFromDateText(secondDate) == auxiliaryFunctions.getMonthFromDateText(incomeMaster->incomes[i].getIncomeDateText()))
+                         && (auxiliaryFunctions.getDayFromDateText(firstDate) <= auxiliaryFunctions.getDayFromDateText(incomeMaster->incomes[i].getIncomeDateText())
+                         && auxiliaryFunctions.getDayFromDateText(secondDate) >= auxiliaryFunctions.getDayFromDateText(incomeMaster->incomes[i].getIncomeDateText())))
                     checkDates = 1;
 
                 if (checkDates == 1)
@@ -201,20 +152,20 @@ void Finance::showIncomesFromPeriod()
 
             for (int i = 0; i < expenseMaster->expenses.size(); i++)
             {
-                if (firstDateYear < auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                        && secondDateYear > auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+                if (auxiliaryFunctions.getYearFromDateText(firstDate) < auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                        && auxiliaryFunctions.getYearFromDateText(secondDate) > auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
                     checkDates = 1;
-                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
-                         && firstDateMonth < auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                         && secondDateMonth > auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+                else if ((auxiliaryFunctions.getYearFromDateText(firstDate) == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                          || auxiliaryFunctions.getYearFromDateText(secondDate) == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+                         && auxiliaryFunctions.getMonthFromDateText(firstDate) < auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                         && auxiliaryFunctions.getMonthFromDateText(secondDate) > auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
                     checkDates = 1;
-                else if ((firstDateYear == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                          || secondDateYear == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
-                         && (firstDateMonth == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                             || secondDateMonth == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
-                         && (firstDateDay <= auxiliaryFunctions.getDayFromDateText(expenseMaster->expenses[i].getExpenseDateText())
-                         && secondDateDay >= auxiliaryFunctions.getDayFromDateText(expenseMaster->expenses[i].getExpenseDateText())))
+                else if ((auxiliaryFunctions.getYearFromDateText(firstDate) == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                          || auxiliaryFunctions.getYearFromDateText(secondDate) == auxiliaryFunctions.getYearFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+                         && (auxiliaryFunctions.getMonthFromDateText(firstDate) == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                             || auxiliaryFunctions.getMonthFromDateText(secondDate) == auxiliaryFunctions.getMonthFromDateText(expenseMaster->expenses[i].getExpenseDateText()))
+                         && (auxiliaryFunctions.getDayFromDateText(firstDate) <= auxiliaryFunctions.getDayFromDateText(expenseMaster->expenses[i].getExpenseDateText())
+                         && auxiliaryFunctions.getDayFromDateText(secondDate) >= auxiliaryFunctions.getDayFromDateText(expenseMaster->expenses[i].getExpenseDateText())))
                     checkDates = 1;
 
                 if (checkDates == 1)
@@ -227,27 +178,7 @@ void Finance::showIncomesFromPeriod()
             system("cls");
             cout << "Bilans z okresu: " << firstDate << " - " << secondDate << endl << endl;
 
-            cout << "Przychody: " << endl;
-            for (int i = 0; i < incomesToSort.size(); i++)
-            {
-                cout << incomesToSort[i].getIncomeDateText() << " - " << incomesToSort[i].getIncomeItem() << " - "
-                     << incomesToSort[i].getIncomeAmount() << endl;
-            }
-            cout << endl;
-
-            cout << "Wydatki: " << endl;
-            for (int i = 0; i < expensesToSort.size(); i++)
-            {
-                cout << expensesToSort[i].getExpenseDateText() << " - " << expensesToSort[i].getExpenseItem() << " - "
-                     << expensesToSort[i].getExpenseAmount() << endl;
-            }
-            cout << endl;
-
             auxiliaryFunctions.showBalance(incomesToSort, expensesToSort);
-
-            cout << endl;
-            system("pause");
-            return;
         }
         else
         {

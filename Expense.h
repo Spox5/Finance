@@ -12,11 +12,11 @@ class Expense
 {
     int expenseId, loggedUserId, dateYear, dateMonth, dateDay;
     string expenseItem, expenseDateText;
-    int expenseAmount;
+    double expenseAmount;
 
 public:
     Expense (int expenseId = 0, int loggedUserId = 0, int dateYear = 0, int dateMonth = 0, int dateDay = 0,
-            string expenseItem = "", string expenseDateText = "", int expenseAmount = 0)
+            string expenseItem = "", string expenseDateText = "", double expenseAmount = 0)
     {
         this->expenseId = expenseId;
         this->loggedUserId = loggedUserId;
@@ -61,8 +61,8 @@ public:
     void setExpenseDateText(string newDateTExt);
     string getExpenseDateText();
 
-    void setExpenseAmount(int newAmount);
-    int getExpenseAmount();
+    void setExpenseAmount(double newAmount);
+    double getExpenseAmount();
 
 };
 

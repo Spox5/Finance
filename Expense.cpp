@@ -70,12 +70,12 @@ string Expense::getExpenseDateText()
     return expenseDateText;
 }
 
-void Expense::setExpenseAmount(int newAmount)
+void Expense::setExpenseAmount(double newAmount)
 {
     expenseAmount = newAmount;
 }
 
-int Expense::getExpenseAmount()
+double Expense::getExpenseAmount()
 {
     return expenseAmount;
 }

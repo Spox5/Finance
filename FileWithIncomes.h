@@ -4,19 +4,16 @@
 #include "XMLFile.h"
 #include "Income.h"
 #include "AuxiliaryFunctions.h"
-#include "Markup.h"
 
 using namespace std;
 
 class FileWithIncomes: public XMLFile
 {
     AuxiliaryFunctions auxiliaryFunctions;
-    Income getIncomeData(string incomeData);
+    string getFileWithIncomesName();
 
 public:
     FileWithIncomes(string fileName) : XMLFile(fileName) {};
-    //void dopisz(string tekst);
-    string getFileWithIncomesName();
     vector <Income> loadFileWithIncomes(int loggedUserId);
     void saveIncomeToFile(Income income, int loggedUserId);
     int getLastIncomeIdFromFile();

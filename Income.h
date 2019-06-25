@@ -12,11 +12,11 @@ class Income
 {
     int incomeId, loggedUserId, dateYear, dateMonth, dateDay;
     string incomeItem, incomeDateText;
-    int incomeAmount;
+    double incomeAmount;
 
 public:
     Income (int incomeId = 0, int loggedUserId = 0, int dateYear = 0, int dateMonth = 0, int dateDay = 0,
-            string incomeItem = "", string incomeDateText = "", int incomeAmount = 0)
+            string incomeItem = "", string incomeDateText = "", double incomeAmount = 0)
     {
         this->incomeId = incomeId;
         this->loggedUserId = loggedUserId;
@@ -61,8 +61,8 @@ public:
     void setIncomeDateText(string newDateTExt);
     string getIncomeDateText();
 
-    void setIncomeAmount(int newAmount);
-    int getIncomeAmount();
+    void setIncomeAmount(double newAmount);
+    double getIncomeAmount();
 
 };
 

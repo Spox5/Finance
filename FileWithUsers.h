@@ -9,15 +9,10 @@ using namespace std;
 
 class FileWithUsers: public XMLFile
 {
-    //void dopisz(string tekst);
 
 public:
     FileWithUsers(string fileName) : XMLFile(fileName) {};
-
     vector <User> loadFileWithUsers();
-
-    User getUserData(string userData);
-
     void saveNewUserToFile(User user);
     void saveNewPasswordToFile(string newPassword, int loggedUserId);
 

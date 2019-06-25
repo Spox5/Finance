@@ -12,14 +12,6 @@ class ExpenseMaster
     const int LOGGED_USER_ID;
     FileWithExpenses fileWithExpenses;
     AuxiliaryFunctions auxiliaryFunctions;
-    int getLastExpenseIdFromFile();
-
-    void breakExpenseDateText();
-    vector <Expense> loadExpensesFromMainVectorToSortVector(vector <Expense> expenses);
-    int getYearFromDateText(string dateToBreak);
-    int getMonthFromDateText (string dateToBreak);
-    int getDayFromDateText (string dateToBreak);
-
 
 public:
     ExpenseMaster(string fileNameWithExpenses, int loggedUserId)
@@ -29,10 +21,6 @@ public:
     };
     vector <Expense> expenses;
     void addExpense();
-    void showExpensesFromCurrentMonth();
-    void showExpensesFromPreviousMonth();
-    void showExpensesFromPeriod();
-
 };
 
 #endif
