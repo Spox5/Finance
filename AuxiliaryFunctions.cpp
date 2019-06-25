@@ -281,3 +281,23 @@ bool AuxiliaryFunctions::sortingPredicate(Income i1, Income i2)
     else
         return false;
 }
+
+void AuxiliaryFunctions::showBalance(vector <Income> vector1ToSum, vector <Expense> vector2ToSum)
+{
+    int sumVec1 = 0;
+    int sumVec2 = 0;
+    for (int i = 0; i < vector1ToSum.size(); i++)
+    {
+        sumVec1 = sumVec1 + vector1ToSum[i].getIncomeAmount();
+    }
+
+    for (int i = 0; i < vector2ToSum.size(); i++)
+    {
+        sumVec2 = sumVec2 + vector2ToSum[i].getExpenseAmount();
+    }
+
+    int balance = sumVec1 - sumVec2;
+
+    cout << "Bilans wynosi: " << balance << " zl." << endl;
+}
+

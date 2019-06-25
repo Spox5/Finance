@@ -4,7 +4,7 @@ void IncomeMaster::addIncome()
 {
     Income income;
     string item, date, amountString;
-    int amount;
+    double amount;
 
     cout << "Czy przychod dotyczy dnia dzisiejszego(t/n)." << endl;
     string dayChoice;
@@ -39,7 +39,12 @@ void IncomeMaster::addIncome()
     {
         cout << "Podaj wysokosc przychodu: " << endl;
         cin >> amountString;
-        amount = atoi(amountString.c_str());
+        for (int charPosition = 0; charPosition < amountString.length(); charPosition++)
+        {
+            if (amountString[charPosition] == ',')
+                amountString[charPosition] = '.';
+        }
+        amount = atof(amountString.c_str());
         if (auxiliaryFunctions.checkAmountIsCorrect(amountString))
         {
             income.setIncomeAmount(amount);

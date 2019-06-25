@@ -3,8 +3,29 @@
 <Expense>
 <ExpenseId>1</ExpenseId>
 <UserId>1</UserId>
-<ExpenseDate>2019-06-24</ExpenseDate>
+<ExpenseDate>2019-03-24</ExpenseDate>
+<ExpenseItem>sklep - marzec</ExpenseItem>
+<ExpenseAmount>5</ExpenseAmount>
+</Expense>
+<Expense>
+<ExpenseId>2</ExpenseId>
+<UserId>2</UserId>
+<ExpenseDate>2019-02-10</ExpenseDate>
 <ExpenseItem>sklep</ExpenseItem>
 <ExpenseAmount>5</ExpenseAmount>
+</Expense>
+<Expense>
+<ExpenseId>3</ExpenseId>
+<UserId>1</UserId>
+<ExpenseDate>2019-02-11</ExpenseDate>
+<ExpenseItem>sklep - luty</ExpenseItem>
+<ExpenseAmount>5</ExpenseAmount>
+</Expense>
+<Expense>
+<ExpenseId>4</ExpenseId>
+<UserId>1</UserId>
+<ExpenseDate>2019-06-25</ExpenseDate>
+<ExpenseItem>centrum handlowe - czerwiec</ExpenseItem>
+<ExpenseAmount>5000</ExpenseAmount>
 </Expense>
 </Expenses>

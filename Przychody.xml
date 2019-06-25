@@ -4,7 +4,7 @@
 <IncomeId>1</IncomeId>
 <UserId>1</UserId>
 <IncomeDate>2019-05-21</IncomeDate>
-<IncomeItem>auto</IncomeItem>
+<IncomeItem>auto - maj 21</IncomeItem>
 <IncomeAmount>505</IncomeAmount>
 </Income>
 <Income>
@@ -18,28 +18,28 @@
 <IncomeId>3</IncomeId>
 <UserId>1</UserId>
 <IncomeDate>2019-05-20</IncomeDate>
-<IncomeItem>rower</IncomeItem>
+<IncomeItem>rower - maj 20</IncomeItem>
 <IncomeAmount>50</IncomeAmount>
 </Income>
 <Income>
 <IncomeId>4</IncomeId>
 <UserId>1</UserId>
 <IncomeDate>2019-06-18</IncomeDate>
-<IncomeItem>oboz</IncomeItem>
+<IncomeItem>oboz - czerwiec</IncomeItem>
 <IncomeAmount>1000</IncomeAmount>
 </Income>
 <Income>
 <IncomeId>5</IncomeId>
 <UserId>1</UserId>
 <IncomeDate>2019-05-10</IncomeDate>
-<IncomeItem>zlecenie</IncomeItem>
+<IncomeItem>zlecenie - maj 10</IncomeItem>
 <IncomeAmount>1000</IncomeAmount>
 </Income>
 <Income>
 <IncomeId>6</IncomeId>
 <UserId>1</UserId>
 <IncomeDate>2019-05-30</IncomeDate>
-<IncomeItem>praca</IncomeItem>
+<IncomeItem>praca - maj 30</IncomeItem>
 <IncomeAmount>1000</IncomeAmount>
 </Income>
 </Incomes>

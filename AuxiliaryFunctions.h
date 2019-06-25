@@ -6,6 +6,7 @@
 #include <time.h>
 #include <algorithm>
 #include "Income.h"
+#include "Expense.h"
 #include "Markup.h"
 
 using namespace std;
@@ -37,7 +38,7 @@ public:
     int getLastIncomeIdFromFile();
 
 
-    void showSum();
+    void showBalance(vector <Income> vector1ToSum, vector <Expense> vector2ToSum);
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
     int konwersjaStringNaInt(string liczba);
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
