@@ -140,9 +140,26 @@ bool AuxiliaryFunctions::checkUserDate(string userDate)
 
 bool AuxiliaryFunctions::checkAmountIsCorrect(string amount)
 {
+    bool isDot = false;
+    bool isComma = false;
     for (int charPosition = 0; charPosition < amount.length(); charPosition++)
         {
-            if (amount[charPosition] < 48 || amount[charPosition] > 57)
+
+            if ((amount[charPosition] >= 48 && amount[charPosition] <= 57) || (amount[charPosition] == 46 || amount[charPosition] == 44))
+            {
+                if ((amount[charPosition] == 46 || amount[charPosition] == 44) && (isDot == false || isComma == false))
+                {
+                    isDot = true;
+                    isComma = true;
+                }
+                else if (amount[charPosition] == 46 || amount[charPosition] == 44 && (isDot == true || isComma == true))
+                {
+                    cout << "Podana wysokosc przychodu jest nieprawidlowa." << endl;
+                    return 0;
+                }
+
+            }
+            else
             {
                 cout << "Podana wysokosc przychodu jest nieprawidlowa." << endl;
                 return 0;
@@ -269,35 +286,51 @@ int AuxiliaryFunctions::getDayFromDateText(string dateToBreak)
     return day;
 }
 
-bool AuxiliaryFunctions::sortingPredicate(Income i1, Income i2)
+void AuxiliaryFunctions::showBalance(vector <Income> vector1ToBalance, vector <Expense> vector2ToBalance)
 {
-    if (i1.getIncomeDateYear() < i2.getIncomeDateYear())
-        return true;
-    else if ((i1.getIncomeDateYear() == i2.getIncomeDateYear()) && (i1.getIncomeDateMonth() <i2.getIncomeDateMonth()))
-        return true;
-    else if ((i1.getIncomeDateYear() == i2.getIncomeDateYear()) && (i1.getIncomeDateMonth() <i2.getIncomeDateMonth())
-             && (i1.getIncomeDateDay() < i2.getIncomeDateDay()))
-        return true;
-    else
-        return false;
-}
-
-void AuxiliaryFunctions::showBalance(vector <Income> vector1ToSum, vector <Expense> vector2ToSum)
-{
-    int sumVec1 = 0;
-    int sumVec2 = 0;
-    for (int i = 0; i < vector1ToSum.size(); i++)
+    cout << "Przychody: " << endl;
+    for (int i = 0; i < vector1ToBalance.size(); i++)
     {
-        sumVec1 = sumVec1 + vector1ToSum[i].getIncomeAmount();
+        cout << vector1ToBalance[i].getIncomeDateText() << " - " << vector1ToBalance[i].getIncomeItem() << " - "
+             << vector1ToBalance[i].getIncomeAmount() << endl;
+    }
+    cout << endl;
+
+    cout << "Wydatki: " << endl;
+    for (int i = 0; i < vector2ToBalance.size(); i++)
+    {
+        cout << vector2ToBalance[i].getExpenseDateText() << " - " << vector2ToBalance[i].getExpenseItem() << " - "
+             << vector2ToBalance[i].getExpenseAmount() << endl;
+    }
+    cout << endl;
+
+    double sumVec1 = 0;
+    double sumVec2 = 0;
+    for (int i = 0; i < vector1ToBalance.size(); i++)
+    {
+        sumVec1 = sumVec1 + vector1ToBalance[i].getIncomeAmount();
     }
 
-    for (int i = 0; i < vector2ToSum.size(); i++)
+    for (int i = 0; i < vector2ToBalance.size(); i++)
     {
-        sumVec2 = sumVec2 + vector2ToSum[i].getExpenseAmount();
+        sumVec2 = sumVec2 + vector2ToBalance[i].getExpenseAmount();
     }
 
-    int balance = sumVec1 - sumVec2;
+    cout << "Suma przychodow: " << sumVec1 << " zl." << endl;
+    cout << "Suma wydatkow: " << sumVec2 << " zl." << endl;
 
-    cout << "Bilans wynosi: " << balance << " zl." << endl;
+    double balance = sumVec1 - sumVec2;
+
+    cout << "Bilans wynosi: " << balance << " zl." << endl << endl;
+    system("pause");
 }
 
+string AuxiliaryFunctions::replaceCommaToDot(string stringToReplace)
+{
+    for (int charPosition = 0; charPosition < stringToReplace.length(); charPosition++)
+        {
+            if (stringToReplace[charPosition] == 44)
+                stringToReplace[charPosition] = 46;
+        }
+    return stringToReplace;
+}

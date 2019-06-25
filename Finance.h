@@ -16,7 +16,6 @@ class Finance
     const string FILE_NAME_WITH_INCOMES;
     const string FILE_NAME_WITH_EXPENSES;
 
-
 public:
 
     Finance(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses)
@@ -42,7 +41,6 @@ public:
     void showBalanceFromCurrentMonth();
     void showIncomesFromPreviousMonth();
     void showIncomesFromPeriod();
-
 };
 
 #endif

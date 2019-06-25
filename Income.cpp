@@ -70,12 +70,12 @@ string Income::getIncomeDateText()
     return incomeDateText;
 }
 
-void Income::setIncomeAmount(int newAmount)
+void Income::setIncomeAmount(double newAmount)
 {
     incomeAmount = newAmount;
 }
 
-int Income::getIncomeAmount()
+double Income::getIncomeAmount()
 {
     return incomeAmount;
 }

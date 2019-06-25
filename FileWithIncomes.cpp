@@ -35,7 +35,7 @@ vector <Income> FileWithIncomes::loadFileWithIncomes(int loggedUserId)
             xml.FindElem("IncomeItem");
             income.setIncomeItem(xml.GetElemContent());
             xml.FindElem("IncomeAmount");
-            income.setIncomeAmount(atoi(xml.GetElemContent().c_str()));
+            income.setIncomeAmount(atof(xml.GetElemContent().c_str()));
             incomes.push_back(income);
         }
 
@@ -55,7 +55,6 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
-
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
@@ -63,11 +62,11 @@ void FileWithIncomes::saveIncomeToFile(Income income, int loggedUserId)
     xml.AddElem("IncomeId", income.getIncomeId());
     xml.AddElem("UserId", loggedUserId);
     xml.AddElem("IncomeDate", income.getIncomeDateText());
-    //xml.AddElem("IncomeDateYear", income.getIncomeDateYear());
-    //xml.AddElem("IncomeDateMonth", income.getIncomeDateMonth());
-    //xml.AddElem("IncomeDateDay", income.getIncomeDateDay());
     xml.AddElem("IncomeItem", income.getIncomeItem());
-    xml.AddElem("IncomeAmount", income.getIncomeAmount());
+    ostringstream strs;
+    strs << income.getIncomeAmount();
+    string str = strs.str();
+    xml.AddElem("IncomeAmount", str);
 
     xml.Save(XMLFile::getFileName());
 }

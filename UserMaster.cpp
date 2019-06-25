@@ -21,7 +21,7 @@ void UserMaster::registerTheUser ()
         {
             if (userLogin == users[i].getUserLogin())
             {
-                cout << "Taki login uzytkowniak juz istnieje. Podaj inny login uzytkownika" << endl;
+                cout << "Taki login uzytkownika juz istnieje. Podaj inny login." << endl;
                 cin >> userLogin;
                 i = 0;
             }
@@ -46,7 +46,6 @@ void UserMaster::registerTheUser ()
     system("pause");
 
     fileWithUsers.saveNewUserToFile(user);
-
 }
 
 int UserMaster::logInTheUser()
@@ -85,7 +84,6 @@ int UserMaster::logInTheUser()
     cout << "Nie ma uzytkownika o takiej nazwie." << endl;
     system ("pause");
     return 0;
-
 }
 
 vector <User> UserMaster::changeUserPassword()
