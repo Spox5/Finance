@@ -174,14 +174,15 @@ bool AuxiliaryFunctions::checkUsersDatesInShowPeriod(string firstDate, string se
     int firstDateMonth = getMonthFromDateText(firstDate);
     int firstDateDay = getDayFromDateText(firstDate);
     int secondDateYear = getYearFromDateText(secondDate);
-    int secondDateMonth = getMonthFromDateText(secondDate);
+    int secondDateMonth = getMonthFromDateText(firstDate);
     int secondDateDay = getDayFromDateText(secondDate);
 
-    if (firstDateYear < secondDateYear)
+    if (getYearFromDateText(firstDate) < getYearFromDateText(secondDate))
         return true;
-    else if (firstDateYear == secondDateYear && firstDateMonth < secondDateMonth)
+    else if (getYearFromDateText(firstDate) == getYearFromDateText(secondDate) && getMonthFromDateText(firstDate) < getMonthFromDateText(secondDate))
         return true;
-    else if (firstDateYear == secondDateYear && firstDateMonth == secondDateMonth && firstDateDay <= secondDateDay)
+    else if (getYearFromDateText(firstDate) == getYearFromDateText(secondDate) && getMonthFromDateText(firstDate) == getMonthFromDateText(firstDate)
+             && getDayFromDateText(firstDate) <= getDayFromDateText(secondDate))
         return true;
     else
         return false;
