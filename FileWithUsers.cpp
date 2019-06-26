@@ -88,5 +88,5 @@ void FileWithUsers::saveNewPasswordToFile(string newPassword, int loggedUserId)
         }
         xml.OutOfElem();
     }
-    xml.Save("Uzytkownicy.xml");
+    xml.Save(XMLFile::getFileName());
 }

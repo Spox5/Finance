@@ -179,6 +179,7 @@ void Finance::showIncomesFromPeriod()
             cout << "Bilans z okresu: " << firstDate << " - " << secondDate << endl << endl;
 
             auxiliaryFunctions.showBalance(incomesToSort, expensesToSort);
+            return;
         }
         else
         {
