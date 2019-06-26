@@ -170,13 +170,6 @@ bool AuxiliaryFunctions::checkAmountIsCorrect(string amount)
 
 bool AuxiliaryFunctions::checkUsersDatesInShowPeriod(string firstDate, string secondDate)
 {
-    int firstDateYear = getYearFromDateText(firstDate);
-    int firstDateMonth = getMonthFromDateText(firstDate);
-    int firstDateDay = getDayFromDateText(firstDate);
-    int secondDateYear = getYearFromDateText(secondDate);
-    int secondDateMonth = getMonthFromDateText(firstDate);
-    int secondDateDay = getDayFromDateText(secondDate);
-
     if (getYearFromDateText(firstDate) < getYearFromDateText(secondDate))
         return true;
     else if (getYearFromDateText(firstDate) == getYearFromDateText(secondDate) && getMonthFromDateText(firstDate) < getMonthFromDateText(secondDate))
